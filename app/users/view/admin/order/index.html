@@ -1,0 +1,101 @@
+<div data-mango="table-bind">
+    <div class="dux-page-header am-cf">
+        <div class="page-title">
+            <form class="am-form-inline" method="get" action="{url()}">
+                <div class="am-form-group">
+                    <input type="text" name="keyword" class="am-form-field" value="{$pageMaps.keyword}"
+                           placeholder="搜索">
+                </div>
+                <select class="am-form-field" name="machineId">
+                    <option value="">-选择机器-</option>
+                    <!--loop{$machineList as $vo}-->
+                    <option value="{$vo.id}" <!--if{$vo.id == $pageMaps.machineId}-->selected<!--{/if}-->>{$vo.machine_name}</option>
+                    <!--{/loop}-->
+                </select>
+
+                    <select class="am-form-field" name="status">
+                        <option value=""  <!--if{$pageMaps.status == ''}-->selected<!--{/if}-->>-订单状态-</option>
+                        <option value="2" <!--if{$pageMaps.status == 2}-->selected<!--{/if}-->>未抓到</option>
+                        <option value="3"  <!--if{$pageMaps.status == 3}-->selected<!--{/if}-->>抓到</option>
+                        <option value="4"  <!--if{$pageMaps.status == 4}-->selected<!--{/if}-->>已申请</option>
+                        <option value="5"  <!--if{$pageMaps.status == 5}-->selected<!--{/if}-->>已发货</option>
+                    </select>
+                <div class="am-form-group">
+                    <button type="submit" class="am-btn am-btn-primary am-icon-search"></button>
+                </div>
+            </form>
+        </div>
+        <div class="page-action">
+            <a class="am-btn am-btn-danger" href="javascript:location.reload();" title="刷新"><i
+                    class="am-icon-refresh "></i></a>
+        </div>
+    </div>
+    <div class="dux-page-table">
+        <table class="am-table dux-table" data-table>
+            <thead>
+            <tr>
+                <th>单号</th>
+                <th>用户名</th>
+                <th>机器名称</th>
+                <th>消费游戏币</th>
+                <th>娃娃名称</th>
+                <th>状态</th>
+                <th>操作时间</th>
+                <th class="am-text-center" width="120">管理</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <!--loop{$list as $vo}-->
+            <?
+               $expressInfo = target('Express')->getWhereInfo(['order_id'=>$vo['id']]);
+            ?>
+            <tr>
+                <td>{$vo.id}</td>
+                <td>{$vo.user_name}</td>
+                <td>
+                    {$vo.machine_name}
+                </td>
+                <td>
+                    {$vo.game_money_price}
+                </td>
+                <td>
+                    {$vo.doll_name}
+                </td>
+                <td>
+                    <!--if{$vo.status == 2}-->
+                    <span class="am-badge am-badge-danger">未抓到</span>
+                    <!--elseif{$vo.status == 3}-->
+                    <span class="am-badge am-badge-success">抓到</span>
+                    <!--elseif{$vo.status == 4}-->
+                    <span class="am-badge am-badge-primary">申请发货</span>
+                    <!--elseif{$vo.status == 5}-->
+                    <span class="am-badge am-badge-warning">已发货</span>
+                    <!--{/if}-->
+                </td>
+
+
+                <td>
+                    {$vo.create_time}
+                </td>
+
+                <td class="am-text-center">
+
+                    <!--if{$vo.status == 4}-->
+                    <a class="am-btn am-btn-primary am-btn-xs"
+                       href="{url('Express/deliver', ['id'=>$expressInfo['id']])}" title="寄件"><i
+                            class="am-icon-truck"></i></a>
+                    <!--{/if}-->
+                    <!--<a class="am-btn am-btn-danger am-btn-xs" href="javascript:;"-->
+                    <!--data-url="{url('del')}" data-id="{$vo.user_id}" title="删除" data-del><i-->
+                    <!--class=" am-icon-trash"></i></a>-->
+                </td>
+            </tr>
+            <!--{/loop}-->
+            </tbody>
+        </table>
+    </div>
+    <div class="dux-page-foot am-cf">
+        {$page}
+    </div>
+</div>

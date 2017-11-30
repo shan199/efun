@@ -1,0 +1,88 @@
+<div class="am-g">
+    <div class="am-u-lg-3 am-u-md-6 am-u-sm-12">
+        <div class="am-panel dux-stat-widget">
+            <div class="am-panel-bd">
+                <i class="media-icon am-icon-btn blue am-icon-desktop"></i>
+                <div class="media-body">
+                    <h1 class="title">{intval($sumStats.web)}</h1>
+                    <p class="grey-text">电脑访问</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="am-u-lg-3 am-u-md-6 am-u-sm-12">
+        <div class="am-panel dux-stat-widget">
+            <div class="am-panel-bd">
+                <i class="media-icon am-icon-btn orange am-icon-wifi"></i>
+                <div class="media-body">
+                    <h1 class="title">{intval($sumStats.mobile)}</h1>
+                    <p class="grey-text">移动访问</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="am-u-lg-3 am-u-md-6 am-u-sm-12">
+        <div class="am-panel dux-stat-widget">
+            <div class="am-panel-bd">
+                <i class="media-icon am-icon-btn red am-icon-cube"></i>
+                <div class="media-body">
+                    <h1 class="title">{intval($sumStats.api)}</h1>
+                    <p class="grey-text">API访问</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="am-u-lg-3 am-u-md-6 am-u-sm-12">
+        <div class="am-panel dux-stat-widget">
+            <div class="am-panel-bd">
+                <i class="media-icon am-icon-btn green am-icon-book"></i>
+                <div class="media-body">
+                    <h1 class="title">{$contentStats}</h1>
+                    <p class="grey-text">内容数量</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="am-g">
+
+
+</div>
+
+
+<script>
+    Do('chart', function () {
+        var webStats = {$webStats};
+        var mobileStats = {$mobileStats};
+        var apiStats = {$apiStats};
+        showData(webStats, 'web');
+        showData(mobileStats, 'mobile');
+        showData(apiStats, 'api');
+        function showData(data, type) {
+            data = getData(data);
+            new Chartist.Line('#stats-' + type, {
+                labels: data.labels,
+                series: [
+                    {
+                        data: data.nums
+                    }
+                ]
+            });
+        }
+
+        function getData(data) {
+            var labels = [];
+            var nums = [];
+            for (var key in data) {
+                labels.push(key);
+                nums.push(data[key]);
+            }
+            return {
+                'labels': labels,
+                'nums': nums
+            };
+        }
+    });
+</script>

@@ -1,0 +1,56 @@
+<div class="dux-page-header am-cf">
+    <div class="page-title">
+        <a class="am-btn am-btn-primary" href="{url('index')}"> 充值套餐</a>
+    </div>
+    <div class="page-action">
+        <a class="am-btn am-btn-danger" href="javascript:location.reload();"><i class="am-icon-refresh"></i></a>
+    </div>
+</div>
+<div class="dux-body">
+    <div class="am-panel am-panel-default dux-panel">
+        <div class="am-panel-hd">{$assignName}充值套餐</div>
+        <div class="am-panel-bd">
+            <form class="am-form  am-form-horizontal dux-form" data-mango="form-bind" method="post">
+                <fieldset>
+
+                    <div class="am-form-group">
+                        <label class="am-u-md-2 am-u-sm-12 am-form-label">套餐名称</label>
+                        <div class="am-u-md-10 am-u-sm-12">
+                            <input type="text" name="package_name" value="{$info.package_name}" placeholder="请输入套餐名称" minlength="3" maxlength="20" required>
+                        </div>
+                    </div>
+                    <div class="am-form-group">
+                        <label class="am-u-md-2 am-u-sm-12 am-form-label">售价</label>
+                        <div class="am-u-md-10 am-u-sm-12">
+                            <input type="text" name="price" value="{$info.price}" placeholder="出售价格、充值人民币数" minlength="2" maxlength="20" required>
+                        </div>
+                    </div>
+                    <div class="am-form-group">
+                        <label class="am-u-md-2 am-u-sm-12 am-form-label">游戏币数</label>
+                        <div class="am-u-md-10 am-u-sm-12">
+                            <input class="am-form-field" value="{$info.game_money}" name="game_money" placeholder="兑换的游戏币数" >
+                        </div>
+                    </div>
+                    <div class="am-form-group">
+                        <label class="am-u-md-2 am-u-sm-12 am-form-label">状态</label>
+                        <div class="am-u-md-10 am-u-sm-12">
+                            <?php if(!isset($info['status'])) $info[ 'status']=1 ; ?>
+                            <div>
+                                <select name="status" data-am-selected="{btnWidth: '100%'}" required>
+                                    <option value="1" <!--if{$info['status']}--> selected <!--{/id}--> >正常</option>
+                                    <option value="0" <!--if{!$info['status']}--> selected <!--{/id}--> >禁用</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="am-form-group">
+                        <div class="am-u-sm-offset-12 am-u-md-offset-2">
+                            <input type="hidden" name="id" value="{$info.id}">
+                            <button class="am-btn am-btn-primary" type="submit" disabled>保存</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>

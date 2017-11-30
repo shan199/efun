@@ -1,0 +1,77 @@
+<div data-mango="table-bind">
+    <div class="dux-page-header am-cf">
+        <div class="page-title">
+            <form class="am-form-inline" method="get" action="{url()}">
+                <div class="am-form-group">
+                    <input type="text" name="keyword" class="am-form-field" value="{$pageMaps.keyword}"
+                           placeholder="搜索">
+                </div>
+                <div class="am-form-group">
+                    <button type="submit" class="am-btn am-btn-primary am-icon-search"></button>
+                </div>
+            </form>
+        </div>
+        <div class="page-action">
+            <a class="am-btn am-btn-danger" href="javascript:location.reload();" title="刷新"><i
+                    class="am-icon-refresh "></i></a>
+        </div>
+    </div>
+    <div class="dux-page-table">
+        <table class="am-table dux-table" data-table>
+            <thead>
+            <tr>
+                <th>单号</th>
+                <th>用户名</th>
+                <th>套餐名称</th>
+                <th>充值金额</th>
+                <th>游戏币</th>
+                <th>状态</th>
+                <th>支付单号</th>
+                <th>操作时间</th>
+                <th class="am-text-center" width="120">管理</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <!--loop{$list as $vo}-->
+            <?
+               $expressInfo = target('Express')->getWhereInfo(['order_id'=>$vo['id']]);
+            ?>
+            <tr>
+                <td>{$vo.id}</td>
+                <td>{$vo.user_name}</td>
+                <td>
+                    {$vo.package_name}
+                </td>
+                <td>
+                    {$vo.price}
+                </td>
+                <td>
+                    {$vo.game_money}
+                </td>
+                <td>
+                    <!--if{$vo.out_pay_order == 0000}-->
+                    <span class="am-badge am-badge-danger">未支付</span>
+                    <!--{else}-->
+                    <span class="am-badge am-badge-success">已支付</span>
+                    <!--{/if}-->
+                </td>
+
+                <td>
+                    {$vo.out_pay_order}
+                </td> <td>
+                    {$vo.create_time}
+                </td>
+
+                <td class="am-text-center">
+
+                </td>
+            </tr>
+            <!--{/loop}-->
+            </tbody>
+        </table>
+    </div>
+    <div class="dux-page-foot am-cf">
+        {$page}
+    </div>
+</div>

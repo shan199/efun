@@ -1,0 +1,68 @@
+<div class="dux-page-header am-cf">
+    <div class="page-title">
+        <a class="am-btn am-btn-primary" href="{url('index')}"> 设备列表</a>
+    </div>
+    <div class="page-action">
+        <a class="am-btn am-btn-danger" href="javascript:location.reload();"><i class="am-icon-refresh"></i></a>
+    </div>
+</div>
+<div class="dux-body">
+    <div class="am-panel am-panel-default dux-panel">
+        <div class="am-panel-hd">{$assignName}机器</div>
+        <div class="am-panel-bd">
+            <form class="am-form  am-form-horizontal dux-form" data-mango="form-bind" method="post">
+                <fieldset>
+
+                    <div class="am-form-group">
+                        <label class="am-u-md-2 am-u-sm-12 am-form-label">机器名称</label>
+                        <div class="am-u-md-10 am-u-sm-12">
+                            <input type="text" name="machine_name" value="{$info.machine_name}" placeholder="请输机器名称"
+                                   minlength="3" maxlength="20" required>
+                        </div>
+                    </div>
+                    <div class="am-form-group">
+                        <label class="am-u-md-2 am-u-sm-12 am-form-label">娃娃名称</label>
+                        <div class="am-u-md-10 am-u-sm-12">
+                            <input type="text" name="doll_name" value="{$info.doll_name}" placeholder="请输入娃娃名称"required>
+                        </div>
+                    </div>
+                    <div class="am-form-group">
+                        <label class="am-u-md-2 am-u-sm-12 am-form-label">控制地址</label>
+                        <div class="am-u-md-10 am-u-sm-12">
+                            <input type="text" name="ip_address" value="{$info.ip_address}" placeholder="请输控制地址，娃娃机ipaddress" required>
+                        </div>
+                    </div>
+                    <div class="am-form-group">
+                        <label class="am-u-md-2 am-u-sm-12 am-form-label">正面镜头流</label>
+                        <div class="am-u-md-10 am-u-sm-12">
+                            <input type="text" name="video_1" value="{$info.video_1}" placeholder="请输入正面镜头流" required>
+                        </div>
+                    </div>
+                    <div class="am-form-group">
+                        <label class="am-u-md-2 am-u-sm-12 am-form-label">侧面镜头流</label>
+                        <div class="am-u-md-10 am-u-sm-12">
+                            <input type="text" name="video_2" value="{$info.video_2}" placeholder="请输入侧面镜头流"  required>
+                        </div>
+                    </div>
+                    <div class="am-form-group">
+                        <label class="am-u-md-2 am-u-sm-12 am-form-label">每次游戏币</label>
+                        <div class="am-u-md-10 am-u-sm-12">
+                            <input type="text" name="game_money" value="{$info.game_money}" placeholder="请输入每次游戏币，每次游戏消耗的游戏币数"
+                                   minlength="1" maxlength="5" required>
+                        </div>
+                    </div>
+
+                    <div class="am-form-group">
+                        <div class="am-u-sm-offset-12 am-u-md-offset-2">
+                            <input type="hidden" name="id" value="{$info.id}">
+                            <button class="am-btn am-btn-primary" type="submit" disabled>保存</button>
+
+                            <a type="button" class="am-btn am-btn-default" href="{url('index')}"> 返回</a>
+
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>

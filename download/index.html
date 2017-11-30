@@ -1,0 +1,136 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>eFun 抓娃娃</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="stylesheet" href="css/amazeui.min.css">
+    <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<div class="am-g myapp-login">
+    <div class="myapp-login-logo-block">
+        <div class="myapp-login-logo">
+           <img width="200px" src="image/logo.png">
+        </div>
+        <div class="myapp-login-logo-text">
+            <div class="myapp-login-logo-text">
+                <span>eFun</span>
+                <div class="info">请选择您的设备</div>
+            </div>
+        </div>
+
+        <div class="am-u-sm-10 login-am-center">
+            <!--<p><a class="am-btn am-btn-default" href="efun1.0.1.apk">安卓设备</a></p>-->
+            <p><a class="am-btn am-btn-default" href="http://efun-oss.oss-cn-beijing.aliyuncs.com/apps/efun1.0.1.apk">安卓</a></p>
+        </div>
+    </div>
+</div>
+
+<script src="js/amazeui.min.js"></script>
+<script src="js/app.js"></script>
+
+<script type="text/javascript" src="js/jqery_1.10.0.min.js"></script>
+<div id="weixin_ios" style="display:none">
+<div class="click_opacity"></div>
+<div class="to_btn">
+<span class="span1"><img src="image/click_btn.png"></span>
+<span class="span2"><em>1</em> 点击右上角<img src="image/menu.png">打开菜单</span>
+<span class="span2"><em>2</em> 选择<img src="image/safari.png">用Safari打开下载</span>
+</div>
+</div>
+<div id="weixin_android" style="display: none">
+<div class="click_opacity"></div>
+<div class="to_btn">
+<span class="span1"><img src="image/click_btn.png"></span>
+<span class="span2"><em>1</em> 点击右上角<img src="image/menu_android.png">打开菜单</span>
+<span class="span2 android_open"><em>2</em> 选择<img src="image/android.png"></span>
+</div>
+</div>
+
+<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript">
+showPopup();
+function showPopup() {
+    var appType = 'android';
+    var u = navigator.userAgent;
+    var ua = window.navigator.userAgent.toLowerCase();
+    var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+    var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+    var isQQ  = u.indexOf('QQ') > -1; //QQ终端
+    var wx = ua.match(/MicroMessenger/i) == 'micromessenger';
+    if (wx == true) {
+        $('.down_load').attr('href', '#');
+        if (isiOS == true) {
+            $("#weixin_ios").show();
+            $("#weixin_android").hide();
+        } else {
+            $("#weixin_ios").hide();
+            $("#weixin_android").show();
+        }
+        return false;
+    }
+    
+}
+
+function href() {
+    window.open('/ios_help.html');
+}
+
+var caution = false
+function setCookie(name, value, expires, path, domain, secure) {
+var curCookie = name + "=" + escape(value) +
+((expires) ? "; expires=" + expires.toGMTString() : "") +
+((path) ? "; path=" + path : "") +
+((domain) ? "; domain=" + domain : "") +
+((secure) ? "; secure" : "")
+if (!caution || (name + "=" + escape(value)).length <= 4000)
+document.cookie = curCookie
+else
+if (confirm("Cookie exceeds 4KB and will be cut!"))
+document.cookie = curCookie
+}
+function getCookie(name) {
+var prefix = name + "="
+var cookieStartIndex = document.cookie.indexOf(prefix)
+if (cookieStartIndex == -1)
+return null
+var cookieEndIndex = document.cookie.indexOf(";", cookieStartIndex + prefix.length)
+if (cookieEndIndex == -1)
+cookieEndIndex = document.cookie.length
+return unescape(document.cookie.substring(cookieStartIndex + prefix.length, cookieEndIndex))
+}
+function deleteCookie(name, path, domain) {
+if (getCookie(name)) {
+document.cookie = name + "=" +
+((path) ? "; path=" + path : "") +
+((domain) ? "; domain=" + domain : "") +
+"; expires=Thu, 01-Jan-70 00:00:01 GMT"
+}
+}
+function fixDate(date) {
+var base = new Date(0)
+var skew = base.getTime()
+if (skew > 0)
+date.setTime(date.getTime() - skew)
+}
+var now = new Date()
+fixDate(now)
+now.setTime(now.getTime() + 365 * 24 * 60 * 60 * 1000)
+var visits = getCookie("counter")
+if (!visits)
+visits = 1
+else
+visits = parseInt(visits) + 1
+setCookie("counter", visits, now)
+
+</script>
+</body>
+</html>
+
